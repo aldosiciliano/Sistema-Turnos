@@ -1,0 +1,6 @@
+SQLAlchemy==2.0.44
+python-dotenv==1.1.1
+mysql-connector-python==9.4.0
+sqlmodel==0.0.27
+asyncmy==0.2.10
+cryptography==46.0.3
