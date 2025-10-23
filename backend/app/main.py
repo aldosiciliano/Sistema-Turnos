@@ -2,6 +2,9 @@ from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import text
 from app.db.sessions import get_session, engine
+from dotenv import load_dotenv
+
+load_dotenv()
 
 app = FastAPI(title="Clinica API (DB Check)")
 
