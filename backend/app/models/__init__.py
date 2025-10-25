@@ -1,15 +1,6 @@
 from .base import Base
-from .usuarios import Usuario, Rol
-from .pacientes import Paciente
-from .especialidades import Especialidad
-from .profesionales import Profesional
-from .turnos import Turno, EstadoTurno
-
-__all__ = [
-    "Base",
-    "Usuario", "Rol",
-    "Paciente",
-    "Especialidad",
-    "Profesional",
-    "Turno", "EstadoTurno",
-]
+from .usuario import Usuario, Rol
+from .paciente import Paciente
+from .especialidad import Especialidad
+from .profesional import Profesional
+from .turno import Turno, EstadoTurno

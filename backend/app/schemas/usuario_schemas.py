@@ -1,3 +1,6 @@
+from enum import Enum
+from pydantic import BaseModel, EmailStr
+
 # Enum de roles
 class Rol(str, Enum):
     admin = "admin"
