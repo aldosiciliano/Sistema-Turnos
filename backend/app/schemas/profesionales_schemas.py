@@ -5,6 +5,7 @@ class ProfesionalCreate(BaseModel):
     apellido: str
     matricula: str
     id_especialidad: int
+    id_usuario: int | None = None
 
 class ProfesionalOut(BaseModel):
     id_profesional: int
@@ -12,6 +13,7 @@ class ProfesionalOut(BaseModel):
     apellido: str
     matricula: str
     id_especialidad: int
+    id_usuario: int | None = None
 
     class Config:
         from_attributes = True

@@ -7,3 +7,28 @@ Content-Type: application/json
     "password": "admin",
     "rol": "admin"
 }
+###specialidad
+POST http://127.0.0.1:8000/especialidades/
+Content-Type: application/json
+
+{
+  "nombre": "Genecología"
+}
+###profesional
+POST http://127.0.0.1:8000/profesionales/
+Content-Type: application/json
+
+{
+  "nombre": "Luciana",
+  "apellido": "Perez",
+  "matricula": "M-13524",
+  "id_especialidad": 2,
+  "id_usuario": 1
+}
+### Listar especialidades
+GET http://127.0.0.1:8000/especialidades/
+Accept: application/json
+
+### Listar profesionales
+GET http://127.0.0.1:8000/profesionales/
+Accept: application/json

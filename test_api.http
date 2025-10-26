@@ -1,0 +1,35 @@
+### 🧩 Probar el backend (ruta raíz)
+GET http://127.0.0.1:8000/
+Accept: application/json
+### 🧩 Crear un nuevo paciente
+POST http://127.0.0.1:8000/pacientes/
+Content-Type: application/json
+
+{
+  "nombre": "Santiago",
+  "apellido": "Calderón",
+  "dni": "444330686",
+  "telefono": "3871234567",
+  "fecha_nacimiento": "2002-12-27"
+}
+
+
+### 🧩 Listar todos los pacientes
+GET http://127.0.0.1:8000/pacientes/
+Accept: application/json
+
+### Crear un turno nuevo
+POST http://127.0.0.1:8000/turnos/
+Content-Type: application/json
+
+{
+  "id_paciente": 1,
+  "id_profesional": 2,
+  "fecha_hora": "2025-10-29T10:00:00",
+  "observaciones": "Consulta de control general"
+}
+
+###
+
+### Listar todos los turnos
+GET http://127.0.0.1:8000/turnos/

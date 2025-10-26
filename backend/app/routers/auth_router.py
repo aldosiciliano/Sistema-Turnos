@@ -7,8 +7,6 @@ from app.db.sessions import get_session
 from app.schemas import usuario_schemas
 from app.services import register_user, login_user
 
-
-
 router = APIRouter(prefix="/auth", tags=["Autenticación"])
 
 @router.post("/register")
