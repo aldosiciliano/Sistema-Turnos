@@ -1,0 +1,17 @@
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.form-turno {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 80vh;
+  margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+}

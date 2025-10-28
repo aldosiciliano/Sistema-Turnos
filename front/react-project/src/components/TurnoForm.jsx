@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './styles/TurnoForm.css';
 
 function TurnoForm() {
     const [paciente, setPaciente] = useState('');
@@ -14,7 +15,7 @@ function TurnoForm() {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="form-turno" onSubmit={handleSubmit}>
             <div className="form-group mb-3">
                 <label htmlFor="paciente">Paciente (nombre del paciente)</label>
                 <input
