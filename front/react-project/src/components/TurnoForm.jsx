@@ -1,30 +1,120 @@
 import React, { useState } from 'react';
 import './styles/TurnoForm.css';
+import { createTurno } from '../services/turnoService';
+import { createPatient, findPatientByDni } from '../services/pacienteService';
 
 function TurnoForm() {
-    const [paciente, setPaciente] = useState('');
-    const [profesional, setProfesional] = useState('');
+    const [nombre, setNombre] = useState('');
+    const [apellido, setApellido] = useState('');
+    const [dni, setDni] = useState('');
+    const [telefono, setTelefono] = useState('');
+    const [fechaNacimiento, setFechaNacimiento] = useState('');
+    const [error, setError] = useState(null);
     const [fechaHora, setFechaHora] = useState('');
-    const [estado, setEstado] = useState('Pendiente');
+    const [estado, setEstado] = useState('');
     const [observaciones, setObservaciones] = useState('');
+    const [profesional, setProfesional] = useState('');
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        // Aquí va la lógica para enviar los datos al backend
-        console.log({ paciente, profesional, fechaHora, estado, observaciones });
+        setError(null);
+        let id_paciente = null;
+        try {
+            let paciente = await findPatientByDni(dni);
+            if (paciente) {
+                id_paciente = paciente.id_paciente;
+            } else {
+                paciente = await createPatient({ 
+                    nombre, 
+                    apellido, 
+                    dni, 
+                    telefono, 
+                    fecha_nacimiento: fechaNacimiento 
+                });
+                id_paciente = paciente.id_paciente;
+            }
+            // Crear el turno usando el servicio
+            await createTurno({
+                id_paciente,
+                profesional,
+                fechaHora,
+                estado,
+                observaciones
+            });
+            alert('Turno creado exitosamente');
+            setNombre(''); 
+            setApellido(''); 
+            setDni('');
+            setTelefono('');
+            setFechaNacimiento('');
+            setProfesional(''); 
+            setFechaHora(''); 
+            setEstado(''); 
+            setObservaciones('');
+        } catch (err) {
+            setError(err.message || 'Error general');
+        }
     };
 
     return (
         <form className="form-turno" onSubmit={handleSubmit}>
             <div className="form-group mb-3">
-                <label htmlFor="paciente">Paciente (nombre del paciente)</label>
+                <label htmlFor="nombre">Nombre</label>
                 <input
                     type="text"
                     className="form-control"
-                    id="paciente"
-                    placeholder="Ingrese paciente"
-                    value={paciente}
-                    onChange={e => setPaciente(e.target.value)}
+                    id="nombre"
+                    placeholder="Ingrese nombre"
+                    value={nombre}
+                    onChange={e => setNombre(e.target.value)}
+                    required
+                />
+            </div>
+            <div className="form-group mb-3">
+                <label htmlFor="apellido">Apellido</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    id="apellido"
+                    placeholder="Ingrese apellido"
+                    value={apellido}
+                    onChange={e => setApellido(e.target.value)}
+                    required
+                />
+            </div>
+            <div className="form-group mb-3">
+                <label htmlFor="dni">DNI</label>
+                <input
+                    type="text"
+                    className="form-control"
+                    id="dni"
+                    placeholder="Ingrese DNI"
+                    value={dni}
+                    onChange={e => setDni(e.target.value)}
+                    required
+                />
+            </div>
+            <div className="form-group mb-3">
+                <label htmlFor="telefono">Teléfono</label>
+                <input
+                    type="tel"
+                    className="form-control"
+                    id="telefono"
+                    placeholder='Ingrese telefono'
+                    value={telefono}
+                    onChange={e => setTelefono(e.target.value)}
+                    required
+                />
+            </div>
+            <div className="form-group mb-3">
+                <label htmlFor="fechaNacimiento">Fecha de Nacimiento</label>
+                <input
+                    type="date"
+                    className="form-control"
+                    id="fechaNacimiento"
+                    placeholder='Ingrese fecha de nacimiento'
+                    value={fechaNacimiento}
+                    onChange={e => setFechaNacimiento(e.target.value)}
                     required
                 />
             </div>
