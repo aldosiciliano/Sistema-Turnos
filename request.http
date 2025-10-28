@@ -29,16 +29,16 @@ POST http://127.0.0.1:8000/especialidades/
 Content-Type: application/json
 
 {
-  "nombre": "Genecología"
+  "nombre": "traumatólogo"
 }
 ### Profesional
 POST http://127.0.0.1:8000/profesionales/
 Content-Type: application/json
 
 {
-  "nombre": "Luciana",
-  "apellido": "Perez",
-  "matricula": "M-13524",
+  "nombre": "Dr. Aldo",
+  "apellido": "Siciliano",
+  "matricula": "M-15534",
   "id_especialidad": 2,
   "id_usuario": 1
 }
